@@ -3,23 +3,33 @@ import '../styles/App.scss';
 import phrasesData from '../data/phrases.json';
 
 function App() {
+  // VARIABLES DE ESTADO
   const [phrases, setPhrases] = useState(phrasesData);
   const [newPhrase, setNewPhrase] = useState({
     quote: '',
     character: '',
   });
+  const [filterPhrase, setFilterPhrase] = useState('');
 
-  const renderPhrases = phrases.map((eachPhrase, index) => {
-    return (
-      <li className="phrases-list__li" key={index}>
-        <p>
-          {eachPhrase.quote} --
-          <span className="phraseCharacter"> {eachPhrase.character}</span>
-        </p>
-      </li>
-    );
-  });
+  // PINTAR FRASES MÁS FILTROS
+  const renderPhrases = phrases
+    .filter((eachPhrase) => {
+      return eachPhrase.quote
+        .toLowerCase()
+        .includes(filterPhrase.toLowerCase());
+    })
+    .map((eachPhrase, index) => {
+      return (
+        <li className="phrases-list__li" key={index}>
+          <p>
+            {eachPhrase.quote} --
+            <span className="phraseCharacter"> {eachPhrase.character}</span>
+          </p>
+        </li>
+      );
+    });
 
+  //AÑADIR NUEVA FRASE
   const handleInputNewPhrase = (ev) => {
     setNewPhrase({
       ...newPhrase,
@@ -31,12 +41,38 @@ function App() {
   const handleAddNewPhrase = (ev) => {
     ev.preventDefault();
     setPhrases([...phrases, newPhrase]);
+    setNewPhrase({
+      quote: '',
+      character: '',
+    });
   };
+
+  // FILTRAR POR FRASE
+  const handleFilterPhrase = (ev) => {
+    setFilterPhrase(ev.currentTarget.value);
+    console.log(ev.currentTarget.value);
+    console.log(filterPhrase);
+  };
+
+  // FILTRAR POR PERSONAJE
 
   return (
     <div>
       <header className="header">
         <h1 className="header__title">Frases de Friends</h1>
+        <form className="form-filter">
+          <label className="form-filter__label" htmlFor="quote">
+            Filtrar por frase
+          </label>
+          <input
+            className="form-filter__input"
+            type="text"
+            name="quote"
+            id="quote"
+            value={filterPhrase}
+            onChange={handleFilterPhrase}
+          ></input>
+        </form>
       </header>
       <main>
         <ul className="phrases-list">{renderPhrases}</ul>
