@@ -1,16 +1,25 @@
 import { useState, useEffect } from 'react';
 import '../styles/App.scss';
-import phrasesData from '../data/phrases.json';
+// import phrasesData from '../data/phrases.json';
+import callToApi from '../services/api';
+import logo from '../images/logofriends.jpg';
 
 function App() {
   // VARIABLES DE ESTADO
-  const [phrases, setPhrases] = useState(phrasesData);
+  const [phrases, setPhrases] = useState([]);
   const [newPhrase, setNewPhrase] = useState({
     quote: '',
     character: '',
   });
   const [filterPhrase, setFilterPhrase] = useState('');
   const [filterCharacter, setFilterCharacter] = useState('Todos');
+
+  // useEffect
+  useEffect(() => {
+    callToApi().then((data) => {
+      setPhrases(data);
+    });
+  }, []);
 
   // PINTAR FRASES MÁS FILTROS
   const renderPhrases = phrases
@@ -71,6 +80,8 @@ function App() {
     <div>
       <header className="header">
         <h1 className="header__title">Frases de Friends</h1>
+        <img src={logo} alt="logo serie FRiends" className="logo" />
+
         <form className="form-filter">
           <label className="form-filter__label" htmlFor="quote">
             Filtrar por frase
