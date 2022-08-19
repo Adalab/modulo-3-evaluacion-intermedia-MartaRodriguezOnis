@@ -10,6 +10,7 @@ function App() {
     character: '',
   });
   const [filterPhrase, setFilterPhrase] = useState('');
+  const [filterCharacter, setFilterCharacter] = useState('Todos');
 
   // PINTAR FRASES MÁS FILTROS
   const renderPhrases = phrases
@@ -17,6 +18,13 @@ function App() {
       return eachPhrase.quote
         .toLowerCase()
         .includes(filterPhrase.toLowerCase());
+    })
+    .filter((eachPhrase) => {
+      if (filterCharacter === 'Todos') {
+        return true;
+      } else if (filterCharacter === eachPhrase.character) {
+        return true;
+      }
     })
     .map((eachPhrase, index) => {
       return (
@@ -35,7 +43,6 @@ function App() {
       ...newPhrase,
       [ev.currentTarget.id]: ev.currentTarget.value,
     });
-    console.log(ev.currentTarget.id);
   };
 
   const handleAddNewPhrase = (ev) => {
@@ -45,16 +52,20 @@ function App() {
       quote: '',
       character: '',
     });
+    setFilterPhrase('');
+    setFilterCharacter('Todos');
   };
 
   // FILTRAR POR FRASE
   const handleFilterPhrase = (ev) => {
     setFilterPhrase(ev.currentTarget.value);
-    console.log(ev.currentTarget.value);
-    console.log(filterPhrase);
   };
 
   // FILTRAR POR PERSONAJE
+  const handleFilterCharacter = (ev) => {
+    setFilterCharacter(ev.currentTarget.value);
+    console.log(ev.currentTarget.value);
+  };
 
   return (
     <div>
@@ -72,6 +83,25 @@ function App() {
             value={filterPhrase}
             onChange={handleFilterPhrase}
           ></input>
+          <label className="form-filter__label" htmlFor="character">
+            Filtrar por personaje
+          </label>
+          <select
+            className="form-filter__select"
+            name="character"
+            id="character"
+            value={filterCharacter}
+            onChange={handleFilterCharacter}
+            required
+          >
+            <option value="Todos">Todos</option>
+            <option value="Chandler">Chandler</option>
+            <option value="Joey">Joey</option>
+            <option value="Monica">Monica</option>
+            <option value="Phoebe">Phoebe</option>
+            <option value="Rachel">Rachel</option>
+            <option value="Ross">Ross</option>
+          </select>
         </form>
       </header>
       <main>
