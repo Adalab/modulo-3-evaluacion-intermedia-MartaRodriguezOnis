@@ -4,6 +4,10 @@ import phrasesData from '../data/phrases.json';
 
 function App() {
   const [phrases, setPhrases] = useState(phrasesData);
+  const [newPhrase, setNewPhrase] = useState({
+    quote: '',
+    character: '',
+  });
 
   const renderPhrases = phrases.map((eachPhrase, index) => {
     return (
@@ -15,6 +19,19 @@ function App() {
       </li>
     );
   });
+
+  const handleInputNewPhrase = (ev) => {
+    setNewPhrase({
+      ...newPhrase,
+      [ev.currentTarget.id]: ev.currentTarget.value,
+    });
+    console.log(ev.currentTarget.id);
+  };
+
+  const handleAddNewPhrase = (ev) => {
+    ev.preventDefault();
+    setPhrases([...phrases, newPhrase]);
+  };
 
   return (
     <div>
@@ -33,8 +50,8 @@ function App() {
             type="text"
             name="quote"
             id="quote"
-            value=""
-            onChange=""
+            value={newPhrase.quote}
+            onChange={handleInputNewPhrase}
           ></input>
           <label className="form-newPhrase__label" htmlFor="character">
             Personaje
@@ -44,10 +61,10 @@ function App() {
             type="text"
             name="character"
             id="character"
-            value=""
-            onChange=""
+            value={newPhrase.character}
+            onChange={handleInputNewPhrase}
           ></input>
-          <button className="form-newPhrase__btn" onClick="">
+          <button className="form-newPhrase__btn" onClick={handleAddNewPhrase}>
             Añadir una nueva frase
           </button>
         </form>
