@@ -7,10 +7,12 @@ function App() {
 
   const renderPhrases = phrases.map((eachPhrase, index) => {
     return (
-      <li
-        className="phrases-list__li"
-        key={index}
-      >{`${eachPhrase.quote} -- ${eachPhrase.character}`}</li>
+      <li className="phrases-list__li" key={index}>
+        <p>
+          {eachPhrase.quote} --
+          <span className="phraseCharacter"> {eachPhrase.character}</span>
+        </p>
+      </li>
     );
   });
 
@@ -21,6 +23,34 @@ function App() {
       </header>
       <main>
         <ul className="phrases-list">{renderPhrases}</ul>
+        <h2 className="newPhrase__title">Añadir una frase nueva</h2>
+        <form className="form-newPhrase">
+          <label className="form-newPhrase__label" htmlFor="quote">
+            Frase
+          </label>
+          <input
+            className="form-newPhrase__input"
+            type="text"
+            name="quote"
+            id="quote"
+            value=""
+            onChange=""
+          ></input>
+          <label className="form-newPhrase__label" htmlFor="character">
+            Personaje
+          </label>
+          <input
+            className="form-newPhrase__input"
+            type="text"
+            name="character"
+            id="character"
+            value=""
+            onChange=""
+          ></input>
+          <button className="form-newPhrase__btn" onClick="">
+            Añadir una nueva frase
+          </button>
+        </form>
       </main>
     </div>
   );
