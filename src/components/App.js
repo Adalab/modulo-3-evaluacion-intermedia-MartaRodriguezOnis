@@ -56,13 +56,18 @@ function App() {
 
   const handleAddNewPhrase = (ev) => {
     ev.preventDefault();
-    setPhrases([...phrases, newPhrase]);
-    setNewPhrase({
-      quote: '',
-      character: '',
-    });
-    setFilterPhrase('');
-    setFilterCharacter('Todos');
+    if (newPhrase.quote === '' || newPhrase.character === '') {
+      alert('Tienes que rellenar los campos FRASE y PERSONAJE');
+      return false;
+    } else {
+      setPhrases([...phrases, newPhrase]);
+      setNewPhrase({
+        quote: '',
+        character: '',
+      });
+      setFilterPhrase('');
+      setFilterCharacter('Todos');
+    }
   };
 
   // FILTRAR POR FRASE
