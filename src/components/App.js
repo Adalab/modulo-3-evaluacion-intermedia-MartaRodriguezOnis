@@ -31,9 +31,8 @@ function App() {
     .filter((eachPhrase) => {
       if (filterCharacter === 'Todos') {
         return true;
-      } else if (filterCharacter === eachPhrase.character) {
-        return true;
       }
+      return eachPhrase.character === filterCharacter;
     })
     .map((eachPhrase, index) => {
       return (
@@ -84,12 +83,13 @@ function App() {
   return (
     <div>
       <header className="header">
-        <h1 className="header__title">Frases de Friends</h1>
-        <img src={logo} alt="logo serie FRiends" className="logo" />
-
+        <h1 className="header__title">Frases de</h1>
+        <img src={logo} alt="logo serie Friends" className="header__img" />
+      </header>
+      <main>
         <form className="form-filter">
           <label className="form-filter__label" htmlFor="quote">
-            Filtrar por frase
+            Filtrar por frase:
           </label>
           <input
             className="form-filter__input"
@@ -100,7 +100,7 @@ function App() {
             onChange={handleFilterPhrase}
           ></input>
           <label className="form-filter__label" htmlFor="character">
-            Filtrar por personaje
+            Filtrar por personaje:
           </label>
           <select
             className="form-filter__select"
@@ -119,13 +119,11 @@ function App() {
             <option value="Ross">Ross</option>
           </select>
         </form>
-      </header>
-      <main>
         <ul className="phrases-list">{renderPhrases}</ul>
-        <h2 className="newPhrase__title">Añadir una frase nueva</h2>
+        <h2 className="form-newPhrase__title">Añadir una frase nueva:</h2>
         <form className="form-newPhrase">
           <label className="form-newPhrase__label" htmlFor="quote">
-            Frase
+            Frase:
           </label>
           <input
             className="form-newPhrase__input"
@@ -136,7 +134,7 @@ function App() {
             onChange={handleInputNewPhrase}
           ></input>
           <label className="form-newPhrase__label" htmlFor="character">
-            Personaje
+            Personaje:
           </label>
           <input
             className="form-newPhrase__input"

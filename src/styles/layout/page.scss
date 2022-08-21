@@ -1,14 +1,111 @@
-.header__title {
-  margin: 30px;
-  text-transform: uppercase;
-}
-.form-filter {
-  background-color: beige;
-  margin: 20px;
-  &__label {
-    margin: 10px;
+.header {
+  margin-bottom: 20px;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &__title {
+    font-family: $font_main;
+    text-transform: uppercase;
+  }
+  &__img {
+    width: 200px;
   }
 }
-.logo {
-  width: 200px;
+.form-filter {
+  font-family: $font_main;
+  margin-bottom: 30px;
+  margin-right: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &__label {
+    margin-left: 150px;
+    padding: 10px;
+    color: rgb(250, 248, 248);
+    background-color: black;
+    border-radius: 10px;
+    font-size: 18px;
+  }
+  &__input {
+    padding: 10px;
+    margin-left: 10px;
+    color: $color_primary;
+    border-radius: 10px;
+    width: 220px;
+    font-size: 18px;
+    border: 2px solid $color_primary;
+  }
+  &__select {
+    padding: 10px;
+    margin-left: 10px;
+    color: $color_primary;
+    border-radius: 10px;
+    font-size: 18px;
+    border: 2px solid $color_primary;
+  }
+}
+.phrases-list {
+  font-family: $font_main;
+  font-size: 15px;
+  border-top: 2px solid $color_primary;
+  padding-top: 50px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  &__li {
+    list-style: none;
+    position: relative;
+    width: 500px;
+    margin: 7px;
+    padding: 4px 5px 3px 7px;
+    border-radius: 6px;
+    border: 2px solid $color_primary;
+  }
+}
+.phraseCharacter {
+  font-weight: 900;
+  color: $color_primary;
+}
+.form-newPhrase {
+  font-family: $font_main;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-right: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &__title {
+    margin-top: 25px;
+    text-align: center;
+    font-weight: 900;
+    font-size: 28px;
+  }
+  &__label {
+    margin-left: 80px;
+    padding: 10px;
+    color: rgb(250, 248, 248);
+    background-color: black;
+    border-radius: 10px;
+    font-size: 18px;
+  }
+  &__input {
+    padding: 10px;
+    margin-left: 10px;
+    color: $color_primary;
+    border-radius: 10px;
+    width: 220px;
+    font-size: 18px;
+    border: 2px solid $color_primary;
+  }
+  &__btn {
+    padding: 10px;
+    margin-left: 40px;
+    color: $color_primary;
+    background-color: black;
+    border-radius: 10px;
+    width: 220px;
+    font-size: 18px;
+    border: 2px solid $color_primary;
+  }
 }
